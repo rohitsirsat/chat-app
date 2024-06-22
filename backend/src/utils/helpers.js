@@ -34,3 +34,11 @@ export const removeUnusedMulterImageFilesOnError = (req) => {
     console.log("Error while removing image files: ", error);
   }
 };
+
+export const getLocalPath = (fileName) => {
+  return `public/images/${fileName}`;
+};
+
+export const getStaticFilePath = (req, fileName) => {
+  return `${req.protocol}://${req.get("host")}/images/${fileName}`;
+};
