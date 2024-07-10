@@ -24,6 +24,22 @@ const errorHandler = (err, req, res, next) => {
     error = new ApiError(statusCode, message, error?.errors || [], err.stack);
   }
 
+  /**
+   * const response: {
+    stack?: string;
+    message: string;
+    name: string;
+} | {
+    stack: string | undefined;
+    message: string;
+    statusCode: number;
+    data: any;
+    success: boolean;
+    errors: any[];
+    name: string;
+}
+   */
+
   const response = {
     ...error,
     message: error.message,
