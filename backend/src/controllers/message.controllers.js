@@ -97,6 +97,7 @@ const sendMessages = asyncHandler(async (req, res) => {
     });
   }
 
+  //Create the Message
   const message = await ChatMessage.create({
     sender: new mongoose.Types.ObjectId(req.user._id),
     content: content || "",
@@ -104,6 +105,7 @@ const sendMessages = asyncHandler(async (req, res) => {
     attachments: messageFiles,
   });
 
+  // Update Last Message in Chat
   const chat = await Chat.findByIdAndUpdate(
     chatId,
     {
@@ -111,11 +113,10 @@ const sendMessages = asyncHandler(async (req, res) => {
         lastMessage: message._id,
       },
     },
-    {
-      new: true,
-    }
+    { new: true }
   );
 
+  // structure the message
   const messages = await ChatMessage.aggregate([
     {
       $match: {
@@ -125,7 +126,8 @@ const sendMessages = asyncHandler(async (req, res) => {
     ...chatMessageCommonAggregation(),
   ]);
 
-  const receivedMessage = message[0];
+  // Store the aggregation result
+  const receivedMessage = messages[0];
 
   if (!receivedMessage) {
     throw new ApiError(500, "Internal server error");
