@@ -4,12 +4,6 @@ import { Server, Socket } from "socket.io";
 import { AvailableChatEvents, ChatEventEnum } from ".././constants.js";
 import { User } from "../models/user.models.js";
 import { ApiError } from "../utils/ApiError.js";
-import cookie from "cookie";
-import jwt from "jsonwebtoken";
-import { Server, Socket } from "socket.io";
-import { AvailableChatEvents, ChatEventEnum } from "../constants.js";
-import { User } from "../models/apps/auth/user.models.js";
-import { ApiError } from "../utils/ApiError.js";
 
 /**
  * @description This function is responsible to allow user to join the chat represented by chatId (chatId). event happens when user switches between the chats

@@ -3,7 +3,6 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { errorHandler } from "./middlewares/error.middlewares.js";
 import requestIp from "request-ip";
 import morganMiddleware from "./logger/morgan.logger.js";
 import { initializeSocketIO } from "./socket/index.js";
